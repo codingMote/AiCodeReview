@@ -7,3 +7,10 @@ ollama:
   api:
     chat: "api/chat"
     system-one: "v1/systemone"
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: zyl20
+    url: jdbc:mysql://localhost:3306/car_park

@@ -1,5 +1,6 @@
 package com.example.aicodereview.configs.global.dev;
 
+import com.example.aicodereview.common.ThreadPoolCommon.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,14 +30,19 @@ public class DevConfiguration {
     @Value("${ollama.api.system-one}")
     private String systemOneApi;
 
-    @Qualifier("chatPoolExecutor")
-    @Autowired
-    private ThreadPoolExecutor threadPoolExecutor;
+    @Qualifier(ThreadPoolName.CHAT_POOL_EXECUTOR)
+    private ThreadPoolExecutor httpExecutor;
+
+    public DevConfiguration(ThreadPoolExecutor httpExecutor){
+        this.httpExecutor = httpExecutor;
+    }
 
     //构建一个与ollama连接的HttpClient
     @Bean
     public HttpClient buildHttpClient(){
-        return HttpClient.newBuilder().build();
+        return HttpClient.newBuilder()
+                .executor(httpExecutor)
+                .build();
     }
 
     //获取chat api key

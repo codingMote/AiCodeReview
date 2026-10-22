@@ -1,21 +1,25 @@
 package com.example.aicodereview.agents.llm;
 
+import org.springframework.stereotype.Component;
+
+import java.net.http.HttpClient;
+
 /**
  * ollama
  */
+@Component("OllamaChatter")
 public class OllamaChatter implements LLMChatter{
 
-    private static OllamaChatter ollamaChatter = new OllamaChatter();
+    //内部维护httpClient
+    private HttpClient httpClient;
 
-    public LLMChatter getInstance(){
-        return ollamaChatter;
+    public OllamaChatter(HttpClient httpClient){
+        this.httpClient = httpClient;
     }
 
     @Override
     public String chat(String prompt) {
         return "";
     }
-
-    //内部维护httpClient
 
 }

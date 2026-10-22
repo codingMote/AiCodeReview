@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import com.example.aicodereview.common.ThreadPoolCommon.*;
 
 /**
  * 线程池配置
@@ -14,7 +15,11 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class ThreadPoolConfiguration {
 
-    @Bean("chatPoolExecutor")
+    /**
+     * llm聊天线程池
+     * @return
+     */
+    @Bean(ThreadPoolName.CHAT_POOL_EXECUTOR)
     public ThreadPoolExecutor chatPoolExecutor(){
 
         //暂时工厂和拒绝策略用默认
