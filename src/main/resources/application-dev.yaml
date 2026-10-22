@@ -1,0 +1,9 @@
+#开发环境
+
+#配置ollama api
+ollama:
+  host: "127.0.0.1"
+  port: "11434"
+  api:
+    chat: "api/chat"
+    system-one: "v1/systemone"
